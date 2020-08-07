@@ -39,13 +39,13 @@ Quando for feito algum Patch e informar o parametro columns, o retorno do endpoi
 Para rodar o projeto basta rodar o comando
 
 ```shell
-	docker-compose up -d
+docker-compose up -d
 ```
 
 Para visualizar logs 
 ```shell
-	docker logs app_frontend
-	docker logs app_backend
+docker logs app_frontend
+docker logs app_backend
 ```
 
 Url para acessar front end: [http://localhost:3330/](http://localhost:3330/)  
