@@ -30,6 +30,7 @@ Módulo de uploads de arquivos, contendo a rota:
 ---
 Nos endpoints de get é obrigatório informar parametro columns, isto serve para você informar quais colunas serão buscada do banco de dados, exemplo
 "http://localhost:3331/product?page=1&limit=25&columns=id,name,minimumStock,currentStock"
+
 Caso essa tabela tenha muitos registros ou joins, você consegue dizer exatamente qual colunas buscar, poupando processamento.
 
 Quando for feito algum Patch e informar o parametro columns, o retorno do endpoint será as colunas dessa entidade que foi modificado, caso não seja informado, tirar retornar um boleano
