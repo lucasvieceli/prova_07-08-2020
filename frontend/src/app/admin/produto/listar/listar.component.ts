@@ -23,7 +23,7 @@ export class ListarComponent  {
 
   async getItems() {
     try{
-      const result = await this.productService.getAll({
+      const result: any = await this.productService.getAll({
         page: this.page,
         limit: this.limit,
         columns: 'id,name,minimumStock,currentStock'

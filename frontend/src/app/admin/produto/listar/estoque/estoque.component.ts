@@ -37,7 +37,7 @@ export class EstoqueComponent implements OnInit {
       this.disabledReduce = true
       this.disabledAdd = true
       await this.sleep()
-      const result = await this.productService.edit(this.id, {currentStock: value}, {columns: "currentStock, "}).toPromise()
+      const result: any = await this.productService.edit(this.id, {currentStock: value}, {columns: "currentStock, "}).toPromise()
       this.currentStock = result.currentStock
 
       this.onChangeStock.emit(result)
