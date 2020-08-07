@@ -27,6 +27,12 @@ Módulo dos produtos no sistema, contendo as rotas:
 #### Upload
 Módulo de uploads de arquivos, contendo a rota:
  - /uploads/:name
+ ---
+ #### Frontend
+No frontend foi feito cada tela um submodulos para conseguir utilizar bem o lazyloading, para que não tenha carregamento desnecessário 
+
+No botão de adicionar ou diminuir estoque, foi adicionado um timeout para, exibir o loading
+ 
 ---
 Nos endpoints de get é obrigatório informar parametro columns, isto serve para você informar quais colunas serão buscada do banco de dados, exemplo
 "http://localhost:3331/product?page=1&limit=25&columns=id,name,minimumStock,currentStock"
