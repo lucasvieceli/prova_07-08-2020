@@ -1,0 +1,67 @@
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">{{title}}</h1>
+  </div>
+
+
+  <form [formGroup]="form" (submit)="submit()">
+      
+    <div class="form-group row" *ngIf="product && product.image">
+      <img [src]="getImage()" width="200" height="200"  class="img-thumbnail">
+    </div>
+    <div class="form-group row">
+        <label for="inputEmail3" class="col-sm-2 col-form-label">Imagem</label>
+        <div class="col-sm-10 col-md-10 col-lg-5">
+            <div class="custom-file ">
+                <input type="file" (change)="uploadFile($event)"  accept="image/*" class="custom-file-input" id="validatedCustomFile" required>
+                <app-field-error-display [displayError]="isFieldValid('image', false)" errorMsg="Campo Obrigatório"></app-field-error-display>
+                <label class="custom-file-label" for="validatedCustomFile">Escolher arquivo...</label>
+                <div class="invalid-feedback">Exemplo de feedback inválido para input file</div>
+            </div>
+        </div>
+    </div>
+    <div class="form-group row">
+      <label for="inputEmail3" class="col-sm-2 col-form-label">Nome</label>
+      <div class="col-sm-10 col-md-10 col-lg-5">
+        <input type="text" class="form-control" formControlName="name" placeholder="Nome">
+        <app-field-error-display [displayError]="isFieldValid('name')" errorMsg="Campo Obrigatório"></app-field-error-display>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="inputEmail3" class="col-sm-2 col-form-label">Estoque mínimo</label>
+      <div class="col-sm-10 col-md-10 col-lg-5">
+        <input type="number" class="form-control" formControlName="minimumStock">
+        <app-field-error-display [displayError]="isFieldValid('minimumStock')" errorMsg="Campo Obrigatório"></app-field-error-display>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="inputEmail3" class="col-sm-2 col-form-label">Estoque atual</label>
+      <div class="col-sm-10 col-md-10 col-lg-5">
+        <input type="number" class="form-control" formControlName="currentStock">
+        <app-field-error-display [displayError]="isFieldValid('currentStock')" errorMsg="Campo Obrigatório"></app-field-error-display>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="inputEmail3" class="col-sm-2 col-form-label">Custo</label>
+      <div class="col-sm-10 col-md-10 col-lg-5">
+        <input type="number" class="form-control" formControlName="costPrice">
+        <app-field-error-display [displayError]="isFieldValid('costPrice')" errorMsg="Campo Obrigatório"></app-field-error-display>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="inputEmail3" class="col-sm-2 col-form-label">Preço revenda</label>
+      <div class="col-sm-10 col-md-10 col-lg-5">
+        <input type="number" class="form-control" formControlName="resalePrice">
+        <app-field-error-display [displayError]="isFieldValid('resalePrice')" errorMsg="Campo Obrigatório"></app-field-error-display>
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-sm-10">
+        <app-btn classe="btn-primary" [spinner]="spinnerBtn"   [disabled]="!form.valid" (click)="submit()" text="Enviar"></app-btn>
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-sm-10 col-md-10 col-lg-5">
+        <ngb-alert *ngIf="error" type="danger" [dismissible]="false" >{{error}}</ngb-alert>
+      </div>
+    </div>
+  </form>

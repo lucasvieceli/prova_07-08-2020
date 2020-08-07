@@ -1,0 +1,13 @@
+<div id="container" class="text-center">
+  <form [formGroup]="form" class="form-signin">
+    <h1 class="h3 mb-3 font-weight-normal">Acessar o sistema</h1>
+    <label for="inputEmail" class="sr-only">E-mail</label>
+    <input type="email" class="form-control" placeholder="E-mail" formControlName="username" required autofocus>
+    <app-field-error-display [displayError]="isFieldValid('username')" errorMsg="Campo Obrigatório"></app-field-error-display>
+    <label for="inputPassword" class="sr-only">Senha</label>
+    <input type="password" formControlName="password" class="form-control" placeholder="Senha" required>
+    <app-field-error-display [displayError]="isFieldValid('password')" errorMsg="Campo Obrigatório"></app-field-error-display>
+    <app-btn classe="btn-lg btn-primary btn-block send"  [disabled]="!form.valid" text="Acessar" [spinner]="spinner" (click)="login()"></app-btn>
+    <ngb-alert *ngIf="invalid" type="danger" [dismissible]="false" >Usuário ou senha inválidos</ngb-alert>
+  </form>
+</div>

@@ -1,0 +1,63 @@
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+  <h1 class="h2">Produtos</h1>
+  <div class="btn-toolbar mb-2 mb-md-0">
+    <a type="button" routerLink="/admin/produto/cadastrar" class="btn btn-md btn-outline-secondary">
+      <i class="fa fa-plus"></i> Cadastrar
+    </a>
+  </div>
+</div>
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Nome</th>
+      <th scope="col">Estoque Mínimo</th>
+      <th scope="col">Estoque Atual</th>
+      <th scope="col"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let item of list" [class.stock]="item.stock">
+      <th scope="row">
+        <span *ngIf="item.stock" title="Estoque atual está menor que o mínimo ({{item.minimumStock}})">
+          <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+        </span>
+        {{ item.id }}
+      </th>
+      <td>{{ item.name }}</td>
+      <td>{{ item.minimumStock }}</td>
+      <td><app-estoque [id]="item.id" [currentStock]="item.currentStock" (onChangeStock)="onChangeStock($event)"></app-estoque></td>
+      <td>
+        <div class="btn-group" role="group" aria-label="Basic example">
+        <app-btn-delete [id]="item.id" (onDelete)="onDelete()"></app-btn-delete>
+        <a class="btn btn-info" routerLink="/admin/produto/editar/{{item.id}}"><i class="fa fa-pencil"></i></a>
+      </div>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  
+  <div class="d-flex justify-content-between p-2">
+    <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="limit" (pageChange)="getItems()">
+    </ngb-pagination>
+  
+    <select class="custom-select" style="width: auto" [(ngModel)]="limit" (ngModelChange)="getItems()">
+      <option [ngValue]="25">25 itens</option>
+      <option [ngValue]="50">50 itens</option>
+      <option [ngValue]="100">100 itens</option>
+    </select>
+  </div>
+  <div class="d-flex justify-content-between p-2 report">
+      <div>
+        <div class="d-flex item">
+          <strong>Total de Produtos: </strong>
+          <span>{{report?.totalProducts}}</span>
+        </div>
+        <div class="d-flex item">
+          <strong>Lucro Bruto: </strong>
+          <span>{{report?.net | currency:'BRL':true:'1.2-2'}}</span>
+        </div>
+      </div>
+  
+  </div>
